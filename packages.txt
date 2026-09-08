@@ -1,0 +1,5 @@
+# System-level (apt) dependencies for Streamlit Community Cloud.
+# librosa/soundfile need these for robust audio decoding beyond plain WAV
+# (mp3, m4a, ogg uploads) and for numba's LLVM backend.
+ffmpeg
+libsndfile1
