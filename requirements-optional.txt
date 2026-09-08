@@ -1,0 +1,21 @@
+# Optional upgrades — install with:
+#   pip install -r requirements-optional.txt
+#
+# The engine works fine without these (falls back to the keyword-lexicon
+# lyrics analysis and skips transcription). Install them if you want:
+#
+#   - openai-whisper : transcribe lyrics straight from the audio file
+#                       (supports Nepali + Hindi; large first-time model
+#                       download, ~150MB-1.5GB depending on model size)
+#   - transformers,
+#     torch          : swap the keyword-lexicon sentiment analysis for a
+#                       real multilingual transformer model
+#                       (first run downloads the model, ~1GB, needs internet)
+#
+# Nothing here costs money — these are all free/open-source — but they do
+# need a working internet connection the first time you run them, and more
+# disk space / RAM than the core install.
+
+openai-whisper
+transformers
+torch

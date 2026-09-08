@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "description": "Reference feature ranges used to score an uploaded song against 'what recent hits in this market tend to look like'.",
+    "caveat": "These are HEURISTIC STARTING RANGES derived from the qualitative findings in the Phase 1 research report (Sept 2026) — general music-data-science findings plus documented Nepali/Bollywood industry trends. They are NOT fitted from a large labeled dataset of measured audio features, because building that dataset requires licensed access to audio at scale. Treat scores from this file as directionally useful, not statistically rigorous. Recalibrate by replacing these numbers once you've run extract_audio_features() over a real, labeled reference set (see README 'Improving the reference library').",
+    "version": "0.1.0",
+    "last_updated": "2026-09"
+  },
+  "markets": {
+    "nepali_pop": {
+      "label": "Nepali Pop / Folk-Fusion (recent, ~2024-2026)",
+      "resonant_themes": ["romance", "heartbreak_separation", "migration_diaspora", "ambition_struggle"],
+      "notes": "Per the Phase 1 report: emotional authenticity, strong visual/narrative storytelling, folk-modern fusion, Nepali-English code-switching, and festival-timed releases (Dashain/Tihar) are recurring drivers. Audio trends skew mid-tempo, hook-forward, and produced-but-not-maximalist.",
+      "features": {
+        "tempo_bpm":              {"ideal_low": 82,  "ideal_high": 128, "soft_min": 55,  "soft_max": 165, "weight": 0.5},
+        "danceability_proxy":     {"ideal_low": 0.50, "ideal_high": 0.88, "soft_min": 0.15, "soft_max": 1.0, "weight": 1.0},
+        "energy":                 {"ideal_low": 0.40, "ideal_high": 0.85, "soft_min": 0.10, "soft_max": 1.0, "weight": 0.7},
+        "loudness_lufs":          {"ideal_low": -12, "ideal_high": -5,  "soft_min": -22, "soft_max": -3, "weight": 0.5},
+        "acousticness_proxy":     {"ideal_low": 0.15, "ideal_high": 0.55, "soft_min": 0.0, "soft_max": 0.9, "weight": 0.35},
+        "speechiness_proxy":      {"ideal_low": 0.0,  "ideal_high": 0.45, "soft_min": 0.0, "soft_max": 0.9, "weight": 0.3},
+        "intro_length_sec":       {"ideal_low": 0,    "ideal_high": 6,   "soft_min": 0,   "soft_max": 25, "weight": 0.9},
+        "hook_repetition_score":  {"ideal_low": 0.50, "ideal_high": 1.0, "soft_min": 0.1, "soft_max": 1.0, "weight": 0.9},
+        "brightness":             {"ideal_low": 0.28, "ideal_high": 0.75, "soft_min": 0.05, "soft_max": 1.0, "weight": 0.2},
+        "duration_sec":           {"ideal_low": 150,  "ideal_high": 270, "soft_min": 90,  "soft_max": 420, "weight": 0.3}
+      },
+      "mode_preference": {"minor_bonus": 0.05},
+      "lyrics": {
+        "theme_weight": 0.6,
+        "code_switch_bonus_weight": 0.35,
+        "sentiment_weight": 0.05
+      }
+    },
+    "bollywood_hindi": {
+      "label": "Bollywood / Hindi Pop (recent, ~2024-2026)",
+      "resonant_themes": ["romance", "heartbreak_separation", "celebration_party", "ambition_struggle"],
+      "notes": "Per the Phase 1 report: 2024-2025 hits are genre-eclectic (R&B, folk-dance, rap, orchestral, electro-qawwali). Reels-first virality now often precedes streaming success. 'Restraint' tracks (vocal-forward, mood-first) are a real counter-trend to maximalist party anthems, so this profile keeps fairly wide ranges.",
+      "features": {
+        "tempo_bpm":              {"ideal_low": 85,  "ideal_high": 135, "soft_min": 55,  "soft_max": 170, "weight": 0.4},
+        "danceability_proxy":     {"ideal_low": 0.50, "ideal_high": 0.90, "soft_min": 0.15, "soft_max": 1.0, "weight": 0.9},
+        "energy":                 {"ideal_low": 0.40, "ideal_high": 0.88, "soft_min": 0.10, "soft_max": 1.0, "weight": 0.6},
+        "loudness_lufs":          {"ideal_low": -11, "ideal_high": -4,  "soft_min": -20, "soft_max": -3, "weight": 0.5},
+        "acousticness_proxy":     {"ideal_low": 0.10, "ideal_high": 0.50, "soft_min": 0.0, "soft_max": 0.9, "weight": 0.3},
+        "speechiness_proxy":      {"ideal_low": 0.0,  "ideal_high": 0.5,  "soft_min": 0.0, "soft_max": 0.9, "weight": 0.25},
+        "intro_length_sec":       {"ideal_low": 0,    "ideal_high": 5,   "soft_min": 0,   "soft_max": 20, "weight": 1.0},
+        "hook_repetition_score":  {"ideal_low": 0.55, "ideal_high": 1.0, "soft_min": 0.1, "soft_max": 1.0, "weight": 1.0},
+        "brightness":             {"ideal_low": 0.3,  "ideal_high": 0.8,  "soft_min": 0.05, "soft_max": 1.0, "weight": 0.2},
+        "duration_sec":           {"ideal_low": 140,  "ideal_high": 250, "soft_min": 90,  "soft_max": 400, "weight": 0.3}
+      },
+      "mode_preference": {"minor_bonus": 0.05},
+      "lyrics": {
+        "theme_weight": 0.5,
+        "code_switch_bonus_weight": 0.15,
+        "sentiment_weight": 0.05
+      }
+    },
+    "punjabi_crossover": {
+      "label": "Punjabi / Punjabi-Bollywood Crossover (recent, ~2024-2026)",
+      "resonant_themes": ["celebration_party", "romance", "ambition_struggle"],
+      "notes": "Per the Phase 1 report: Punjabi rhythm/production has moved from a regional genre into the Hindi-pop mainstream (Diljit Dosanjh etc.). Skews higher energy/tempo and beat-forward vs. the other two profiles.",
+      "features": {
+        "tempo_bpm":              {"ideal_low": 95,  "ideal_high": 145, "soft_min": 65,  "soft_max": 175, "weight": 0.5},
+        "danceability_proxy":     {"ideal_low": 0.6,  "ideal_high": 0.95, "soft_min": 0.2, "soft_max": 1.0, "weight": 1.0},
+        "energy":                 {"ideal_low": 0.55, "ideal_high": 0.92, "soft_min": 0.15, "soft_max": 1.0, "weight": 0.8},
+        "loudness_lufs":          {"ideal_low": -10, "ideal_high": -4,  "soft_min": -18, "soft_max": -3, "weight": 0.5},
+        "acousticness_proxy":     {"ideal_low": 0.05, "ideal_high": 0.35, "soft_min": 0.0, "soft_max": 0.7, "weight": 0.3},
+        "speechiness_proxy":      {"ideal_low": 0.0,  "ideal_high": 0.55, "soft_min": 0.0, "soft_max": 0.9, "weight": 0.2},
+        "intro_length_sec":       {"ideal_low": 0,    "ideal_high": 5,   "soft_min": 0,   "soft_max": 18, "weight": 0.9},
+        "hook_repetition_score":  {"ideal_low": 0.55, "ideal_high": 1.0, "soft_min": 0.1, "soft_max": 1.0, "weight": 0.9},
+        "brightness":             {"ideal_low": 0.35, "ideal_high": 0.85, "soft_min": 0.05, "soft_max": 1.0, "weight": 0.2},
+        "duration_sec":           {"ideal_low": 140,  "ideal_high": 240, "soft_min": 90,  "soft_max": 380, "weight": 0.3}
+      },
+      "mode_preference": {"minor_bonus": 0.0},
+      "lyrics": {
+        "theme_weight": 0.4,
+        "code_switch_bonus_weight": 0.1,
+        "sentiment_weight": 0.05
+      }
+    },
+    "generic_south_asian_pop": {
+      "label": "Generic / Unsure Market (wide fallback ranges)",
+      "resonant_themes": ["romance", "heartbreak_separation", "celebration_party", "ambition_struggle", "migration_diaspora"],
+      "notes": "Used when you don't want to commit to one market, or are exploring. Ranges are deliberately wider and weights flatter, so scores are lower-confidence by design — pick a specific market profile for a sharper read.",
+      "features": {
+        "tempo_bpm":              {"ideal_low": 75,  "ideal_high": 140, "soft_min": 50,  "soft_max": 180, "weight": 0.3},
+        "danceability_proxy":     {"ideal_low": 0.45, "ideal_high": 0.9,  "soft_min": 0.1, "soft_max": 1.0, "weight": 0.7},
+        "energy":                 {"ideal_low": 0.35, "ideal_high": 0.9,  "soft_min": 0.1, "soft_max": 1.0, "weight": 0.5},
+        "loudness_lufs":          {"ideal_low": -14, "ideal_high": -4,  "soft_min": -24, "soft_max": -3, "weight": 0.3},
+        "acousticness_proxy":     {"ideal_low": 0.1,  "ideal_high": 0.6,  "soft_min": 0.0, "soft_max": 0.95, "weight": 0.2},
+        "speechiness_proxy":      {"ideal_low": 0.0,  "ideal_high": 0.55, "soft_min": 0.0, "soft_max": 0.95, "weight": 0.2},
+        "intro_length_sec":       {"ideal_low": 0,    "ideal_high": 10,  "soft_min": 0,   "soft_max": 30, "weight": 0.6},
+        "hook_repetition_score":  {"ideal_low": 0.45, "ideal_high": 1.0, "soft_min": 0.05, "soft_max": 1.0, "weight": 0.7},
+        "brightness":             {"ideal_low": 0.25, "ideal_high": 0.85, "soft_min": 0.05, "soft_max": 1.0, "weight": 0.15},
+        "duration_sec":           {"ideal_low": 130,  "ideal_high": 290, "soft_min": 80,  "soft_max": 450, "weight": 0.2}
+      },
+      "mode_preference": {"minor_bonus": 0.0},
+      "lyrics": {
+        "theme_weight": 0.4,
+        "code_switch_bonus_weight": 0.1,
+        "sentiment_weight": 0.05
+      }
+    }
+  }
+}

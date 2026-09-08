@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.streamlit/
+*.wav
+!tests/sample_test_audio.wav
+.DS_Store
